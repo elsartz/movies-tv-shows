@@ -14,13 +14,12 @@
     <!-- stylesheet -->
     <link href="./assets/css/style.css" rel="stylesheet">
 
+    <script type="text/javascript" defer src="./assets/js/javascript.js"></script>
+    <script type="tezt.javascript" defer src="./assets/env/config.js"></script>
     <title>Movies & Tv Shows List</title>
 </head>
 
 <body>
-    <script defer src="./assets/js/javascript.js"></script>
-    <script defer src="./assets/env/config.js"></script>
-
     <!-- NAV-BAR -->
     <nav class="level">
         <div class="site-logo">
@@ -28,23 +27,61 @@
                 <img src="./assets/img/site-logo.png" width="190" height="38">
             </p>
         </div>
-        <p class="level-item has-text-centered">
-            <a class="link is-info"></a>
-        </p>
-        <p class="level-item has-text-centered">
-            <a class="link is-info"></a>
-        </p>
-        <p class="level-item has-text-centered nav-movie">
-            <a class="link is-info column is-4 is-size-3">Movies
+
+
+        <!-- <p class="level-item has-text-centered nav-movie">
+            <a class="link is-info column is-4 is-size-3" id="movies-btn">Movies
                     <span class="material-icons">movie</span>
-                </a>
-            <p class="level-item has-text-centered column is-3 nav-tv">
-                <a class="link is-info column is-3 is-size-3">TV Shows
-                        <span class="material-icons">
-                            smart_display
-                        </span>
-                    </a>
-            </p>
+                </a> -->
+
+        <!-- <p class="level-item has-text-centered column is-3 nav-tv">
+                <a class="link is-info column is-3 is-size-3" id="tv-show-btn">TV Shows
+            <span class="material-icons">
+                                smart_display
+                            </span>
+                </a> -->
+        <div class="columns">
+            <div class="column is-half block"></div>
+            <div class="column is-half block"></div>
+
+            <div class="column is-6">
+                <div class="level-item nav-movie">
+                    <div class="navbar-item level-item has-dropdown is-hoverable ">
+                        <a class="link is-info is-size-3" id="movies-btn">Movies
+                                <span class="material-icons">movie</span></a>
+                        <div class="navbar-dropdown ">
+                            <a class="navbar-item is-size-4">
+                                    Top 10 Movies
+                                  </a>
+                            <a class="navbar-item is-size-4">
+                                    Most Popular Movies
+                                  </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="column is-6">
+                <div class="level-item nav-tv">
+                    <div class="navbar-item level-item has-dropdown is-hoverable ">
+                        <a class="link is-info is-size-3" id="tv-show-btn">TV Shows
+                    <span class="material-icons">smart_display</span></a>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item is-size-4">
+                        Top 10 TVs
+                      </a>
+                            <a class="navbar-item is-size-4">
+                        Most Popular TVs
+                      </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </a>
+        </p>
         </p>
     </nav>
     <!-- END OF NAV-BAR -->
@@ -57,13 +94,12 @@
                 <div class="bd-notification search-content pt-4 is-one-quarter">
                     <!-- search section wrapper -->
                     <div class="field">
-                        <label class="label has-text-white pl-5 is-size-4">Search by Title:</label>
-                        <div class="field">
-                            <div class="control pl-5">
-                                <input class="input is-rounded is-medium" type="text" placeholder="Enter a title">
-
+                        <label class="label has-text-white pl-5 is-size-4 ">Search by Title:</label>
+                        <div class="field ">
+                            <div class="control pl-5 ">
+                                <input class="input is-rounded is-medium " type="text " placeholder="Enter a title ">
                                 <div class="search-btn">
-                                    <button class="button mt-3 is-success is-medium is-rounded">Search</button>
+                                    <button class="button mt-3 is-success is-medium is-rounded id=" search-btn ">Search</button>
                                 </div>
                             </div>
 
@@ -72,21 +108,21 @@
                 </div>
                 <!-- end of search section  -->
             </div>
-            <div class="column">
-                <p class="bd-notification has-background-grey-light">DISPLAY LISTINGS SECTION</p>
+            <div class="column has-background-grey-light ">
+                <p class="bd-notification has-text-centered "></p>
             </div>
         </div>
 
 
         <!-- Hero content: stream section-->
-        <div class="columns">
-            <div class="column is-one-third">is-half</div>
-            <div class="column has-background-danger">
-                <p class="title has-text-centered">
+        <div class="columns ">
+            <div class="column is-one-third "></div>
+            <div class="column has-background-danger ">
+                <p class="title has-text-centered ">
                     Where to Stream Movies/TV Shows
                 </p>
-                <div class="hero-body">
-                    <div class="container has-background-grey-light">
+                <div class="hero-body ">
+                    <div class="container has-background-grey-light ">
 
                     </div>
                 </div>
@@ -96,11 +132,11 @@
 
 
         <!-- Hero footer: will stick at the bottom -->
-        <div class="hero-foot">
-            <nav class="tabs">
-                <div class="container">
+        <div class="hero-foot ">
+            <nav class="tabs ">
+                <div class="container ">
                     <ul>
-                        <li class="is-active">copyright© 2022: Web Dev Corp.&nbsp</li>
+                        <li class="is-active ">copyright© 2022: Web Dev Corp.&nbsp</li>
                         <li>Developers:</li>
                         <li><a>Github profile#1</a></li>
                         <li><a>Github profile#2</a></li>
@@ -110,7 +146,6 @@
             </nav>
         </div>
     </section>
-
 
 </body>
 

@@ -23,6 +23,10 @@
     color: white;
 }
 
+.navbar-dropdown {
+    min-width: 30% !important;
+}
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
