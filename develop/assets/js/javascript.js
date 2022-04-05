@@ -31,18 +31,22 @@ $(document).ready(function() {
     function randomList(response) {
 
         const min = 0
-        const max = 10
+        const max = 250
 
-        if ($('.show-listing-header').length) {
+        if ($('.show-listings-header').length) {
             $('.p-title').empty()
         }
+
         $('.p-title').append(`${menuItem}`)
+        $('.p-title').append(`<div class="column has-background-danger show-tv-lists"></div>`)
 
         for (let i = 0; i < 10; i++) {
             let random = Math.floor(Math.random() * (max - min)) + min
-            $('.display-section-title').append(`
-        <div class="show-tv-list">
+            $('.show-tv-lists').append(`
+            <div class="column has-text-dark has-background-light show-listings-tv mt-3 mb-3 is-size-5 is-rounded is-inline-block">
+            <img src="${response.items[random].image}" width="150px" height="150px">
         <p>${response.items[random].fullTitle}</p>
+     
         </div>
         `)
         }
