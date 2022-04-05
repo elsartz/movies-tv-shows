@@ -1,42 +1,47 @@
 $(document).ready(function() {
 
 
-    function fetchMoviesList() {
+    function fetchMoviesList(categorty) {
 
+        const apiUrl = `https://api.watchmode.com/v1/genres/?apiKey=${apiKeys.watchmode}`
     }
 
     // get Top 10 Tv Shows
-    function fetchTvList() {
+    function fetchTvList(category) {
 
-        apiUrl = `https://imdb-api.com/en/API/Search`
+        const apiUrl = `https://imdb-api.com/en/API/${category}/${apiKeys.imdb}`
 
+        $.ajax({
+            method: 'GET',
+            url: apiUrl,
+            dataType: 'json',
+            error: function(error) {
+                console.log(error)
+            },
+            success: function(response) {
+                // if successful
+                console.log(response)
+            }
+        })
 
-    }
-
-
-
-
-
-
-
-
-    function navBarDropDownTV() {
-
-        $('.navbar-dropdown').append(`
-   
-    `)
 
     }
 
-    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-    $('#tv-show-btn').on('click', navBarDropDownTV)
+
+    let eventListener = function(event) {
+        let category = event.target.dataset.value
+        fetchTvList(category)
+    }
+
+
+    // Event Listerners"
+    $('.tv-show-btn').on('click', eventListener)
+    $('.movies-btn').on('click', eventListener)
+
 
     $('#search-btn').on('click', function() {
+        event.stopPropagation();
         console.log('search')
-    })
-
-    $('#movies-btn').on('click', function() {
-        console.log('movie')
-    })
+    });
 
 });

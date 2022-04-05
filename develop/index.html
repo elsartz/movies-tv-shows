@@ -14,8 +14,7 @@
     <!-- stylesheet -->
     <link href="./assets/css/style.css" rel="stylesheet">
 
-    <script type="text/javascript" defer src="./assets/js/javascript.js"></script>
-    <script type="tezt.javascript" defer src="./assets/env/config.js"></script>
+
     <title>Movies & Tv Shows List</title>
 </head>
 
@@ -47,13 +46,13 @@
             <div class="column is-6">
                 <div class="level-item nav-movie">
                     <div class="navbar-item level-item has-dropdown is-hoverable ">
-                        <a class="link is-info is-size-3" id="movies-btn">Movies
+                        <a class="link is-info is-size-3">Movies
                                 <span class="material-icons">movie</span></a>
                         <div class="navbar-dropdown ">
-                            <a class="navbar-item is-size-4">
+                            <a class="navbar-item is-size-4 movies-btn" data-value="Top250Movies">
                                     Top 10 Movies
                                   </a>
-                            <a class="navbar-item is-size-4">
+                            <a class="navbar-item is-size-4 movies-btn" data-value="MostPopularMoviess">
                                     Most Popular Movies
                                   </a>
                         </div>
@@ -64,15 +63,16 @@
             <div class="column is-6">
                 <div class="level-item nav-tv">
                     <div class="navbar-item level-item has-dropdown is-hoverable ">
-                        <a class="link is-info is-size-3" id="tv-show-btn">TV Shows
+                        <a class="link is-info is-size-3">TV Shows
                     <span class="material-icons">smart_display</span></a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item is-size-4">
+                            <a class="navbar-item is-size-4 tv-show-btn" data-value="Top250TVs">
                         Top 10 TVs
                       </a>
-                            <a class="navbar-item is-size-4">
+                            <a class="navbar-item is-size-4 tv-show-btn" data-value="MostPopularTVs">
                         Most Popular TVs
                       </a>
+
 
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                             <div class="control pl-5 ">
                                 <input class="input is-rounded is-medium " type="text " placeholder="Enter a title ">
                                 <div class="search-btn">
-                                    <button class="button mt-3 is-success is-medium is-rounded id=" search-btn ">Search</button>
+                                    <button class="button mt-3 is-success is-medium is-rounded" id="search-btn">Search</button>
                                 </div>
                             </div>
 
@@ -146,6 +146,9 @@
             </nav>
         </div>
     </section>
+
+    <script defer src="./assets/env/config.js "></script>
+    <script defer src="./assets/js/javascript.js "></script>
 
 </body>
 
