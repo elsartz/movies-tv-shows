@@ -1,7 +1,9 @@
+let menuItem = '';
+
 $(document).ready(function() {
 
 
-    function fetchMoviesList(categorty) {
+    function fetchMoviesList(category) {
 
         const apiUrl = `https://api.watchmode.com/v1/genres/?apiKey=${apiKeys.watchmode}`
     }
@@ -21,27 +23,58 @@ $(document).ready(function() {
             success: function(response) {
                 // if successful
                 console.log(response)
+                randomList(response)
             }
-        })
+        });
+    }
+
+    function randomList(response) {
+
+        const min = 0
+        const max = 10
+
+        if ($('.show-listing-header').length) {
+            $('.p-title').empty()
+        }
+        $('.p-title').append(`${menuItem}`)
+
+        for (let i = 0; i < 10; i++) {
+            let random = Math.floor(Math.random() * (max - min)) + min
+            $('.display-section-title').append(`
+        <div class="show-tv-list">
+        <p>${response.items[random].fullTitle}</p>
+        </div>
+        `)
+        }
+
 
 
     }
 
 
-    let eventListener = function(event) {
-        let category = event.target.dataset.value
-        fetchTvList(category)
-    }
 
 
     // Event Listerners"
-    $('.tv-show-btn').on('click', eventListener)
-    $('.movies-btn').on('click', eventListener)
+    $('.tv-show-btn').on('click', function(event) {
+        let category = event.target.dataset.value
+
+        if (category === "Top250TVs") {
+            menuItem = $('#1').text()
+        } else {
+            menuItem = $('#2').text()
+        }
+        fetchTvList(category)
+    });
+
+    $('.movies-btn').on('click', function(event) {
+        event.stopPropagation();
+    })
 
 
-    $('#search-btn').on('click', function() {
+    $('#search-btn').on('click', function(event) {
         event.stopPropagation();
         console.log('search')
     });
+
 
 });

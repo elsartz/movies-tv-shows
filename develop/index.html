@@ -27,18 +27,6 @@
             </p>
         </div>
 
-
-        <!-- <p class="level-item has-text-centered nav-movie">
-            <a class="link is-info column is-4 is-size-3" id="movies-btn">Movies
-                    <span class="material-icons">movie</span>
-                </a> -->
-
-        <!-- <p class="level-item has-text-centered column is-3 nav-tv">
-                <a class="link is-info column is-3 is-size-3" id="tv-show-btn">TV Shows
-            <span class="material-icons">
-                                smart_display
-                            </span>
-                </a> -->
         <div class="columns">
             <div class="column is-half block"></div>
             <div class="column is-half block"></div>
@@ -66,85 +54,78 @@
                         <a class="link is-info is-size-3">TV Shows
                     <span class="material-icons">smart_display</span></a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item is-size-4 tv-show-btn" data-value="Top250TVs">
+                            <a class="navbar-item is-size-4 tv-show-btn" id="1" data-value="Top250TVs">
                         Top 10 TVs
                       </a>
-                            <a class="navbar-item is-size-4 tv-show-btn" data-value="MostPopularTVs">
+                            <a class="navbar-item is-size-4 tv-show-btn" id="2" data-value="MostPopularTVs">
                         Most Popular TVs
                       </a>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         </a>
         </p>
         </p>
     </nav>
     <!-- END OF NAV-BAR -->
 
-    <section class="hero has-background-grey-dark is-medium">
+    <section class="hero is-link">
+        <div class="hero-body">
+            <div class="columns is-desktop">
+                <!-- search section -->
+                <div class="column is-one-quarter has-background-grey-dark is-medium">
+                    <div class="bd-notification search-content pt-4">
 
-        <!-- wrapper -->
-        <div class="columns is-vcentered">
-            <div class="column is-3">
-                <div class="bd-notification search-content pt-4 is-one-quarter">
-                    <!-- search section wrapper -->
-                    <div class="field">
-                        <label class="label has-text-white pl-5 is-size-4 ">Search by Title:</label>
-                        <div class="field ">
-                            <div class="control pl-5 ">
-                                <input class="input is-rounded is-medium " type="text " placeholder="Enter a title ">
-                                <div class="search-btn">
-                                    <button class="button mt-3 is-success is-medium is-rounded" id="search-btn">Search</button>
+                        <div class="field">
+                            <label class="label has-text-white pl-5 is-size-4 ">Search by Title:</label>
+                            <div class="field ">
+                                <div class="control pl-5 ">
+                                    <input class="input is-rounded is-medium " type="text " placeholder="Enter a title ">
+                                    <div class="search-btn">
+                                        <button class="button mt-3 is-success is-medium is-rounded" id="search-btn">Search</button>
+                                    </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- end of search section  -->
-            </div>
-            <div class="column has-background-grey-light ">
-                <p class="bd-notification has-text-centered "></p>
-            </div>
-        </div>
+                <div class="column is-1">placeholder</div>
 
+                <!-- Show listings -->
+                <div class="column has-background-grey-dark">Show Listings Section
+                    <p class="show-listing-header">
+                        <p class="p-title has-text-centered is-size-3"></p>
+                    </p>
 
-        <!-- Hero content: stream section-->
-        <div class="columns ">
-            <div class="column is-one-third "></div>
-            <div class="column has-background-danger ">
-                <p class="title has-text-centered ">
-                    Where to Stream Movies/TV Shows
-                </p>
-                <div class="hero-body ">
-                    <div class="container has-background-grey-light ">
-
-                    </div>
                 </div>
             </div>
-        </div>
-        <!--end of stream section -->
 
-
-        <!-- Hero footer: will stick at the bottom -->
-        <div class="hero-foot ">
-            <nav class="tabs ">
-                <div class="container ">
-                    <ul>
-                        <li class="is-active ">copyright© 2022: Web Dev Corp.&nbsp</li>
-                        <li>Developers:</li>
-                        <li><a>Github profile#1</a></li>
-                        <li><a>Github profile#2</a></li>
-                        <li><a>Github profile#3</a></li>
-                    </ul>
-                </div>
-            </nav>
+            <!-- stream content -->
+            <div class="columns is-desktop">
+                <div class="column is-one-quarter has-background-warning"></div>
+                <div class="column is-1 "></div>
+                <div class="column has-background-danger">Stream Section</div>
+            </div>
         </div>
+    </section>
+
+    <!-- Hero footer: will stick at the bottom -->
+    <div class="hero-foot column is-11 is-offset-1">
+        <nav class="tabs ">
+            <div class="container has-background-grey-dark">
+                <ul>
+                    <li class="is-active ">copyright© 2022: Web Dev Corp.&nbsp</li>
+                    <li>Developers:</li>
+                    <li><a>Github profile#1</a></li>
+                    <li><a>Github profile#2</a></li>
+                    <li><a>Github profile#3</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     </section>
 
     <script defer src="./assets/env/config.js "></script>
