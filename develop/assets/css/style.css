@@ -45,3 +45,7 @@
     white-space: nowrap;
     direction: ltr;
 }
+
+.show-listings-tv:hover {
+    border: 1px solid blue;
+}
