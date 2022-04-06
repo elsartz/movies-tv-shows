@@ -5,7 +5,31 @@ $(document).ready(function() {
 
     function fetchMoviesList(category) {
 
-        const apiUrl = `https://api.watchmode.com/v1/genres/?apiKey=${apiKeys.watchmode}`
+        const apiUrl = `https://imdb-api.com/en/API/${category}/${apiKeys.imdb}`
+
+        fetch(apiUrl).then(function(response) {
+            if (response.ok) {
+              response.json().then(function(data) {
+                console.log(data);
+                
+      
+                randomList(data);
+
+              });
+            } else {
+              // unrecognizable movie name
+              alert("Error: movie not found");
+            }
+          })
+          .catch(function(error) {
+            // If no response then report network error
+            alert("Unable to connect to Movies API");
+          });
+
+
+
+
+
     }
 
     // get Top 10 Tv Shows
@@ -30,8 +54,8 @@ $(document).ready(function() {
 
     function randomList(response) {
 
-        const min = 0
-        const max = 250
+        const min = 0;
+        const max = 100;
 
         if ($('.show-listings-header').length) {
             $('.p-title').empty()
@@ -71,7 +95,16 @@ $(document).ready(function() {
     });
 
     $('.movies-btn').on('click', function(event) {
-        event.stopPropagation();
+        var category = event.target.dataset.value;
+
+        if (category === "Top250Movies") {
+            menuItem = $('#1').text();
+        } else {
+            menuItem = $('#2').text();
+        }
+        fetchMoviesList(category);
+
+        // event.stopPropagation();
     })
 
 
