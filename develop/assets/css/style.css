@@ -14,6 +14,10 @@
     padding-left: 3rem;
 }
 
+.level {
+    padding-right: 3rem;
+}
+
 .search-btn button {
     width: 100%;
 }
