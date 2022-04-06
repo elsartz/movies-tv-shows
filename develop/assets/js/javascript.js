@@ -43,15 +43,16 @@ $(document).ready(function() {
         for (let i = 0; i < 10; i++) {
             let random = Math.floor(Math.random() * (max - min)) + min
             $('.show-tv-lists').append(`
-            <div class="column has-text-dark has-background-light show-listings-tv mt-3 mb-3 is-size-5 is-rounded is-inline-block">
+            <div class="column has-text-dark has-background-light show-listings-tv mt-3 mb-3 is-size-5 is-inline-block">
             <img src="${response.items[random].image}" width="150px" height="150px">
         <p>${response.items[random].fullTitle}</p>
      
         </div>
         `)
         }
+    }
 
-
+    function displayTvList() {
 
     }
 
@@ -69,6 +70,7 @@ $(document).ready(function() {
         }
         fetchTvList(category)
     });
+
 
     $('.movies-btn').on('click', function(event) {
         event.stopPropagation();
