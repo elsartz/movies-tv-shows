@@ -1,8 +1,38 @@
 let menuItem = '';
 
+var fullTitle = "";
+var netFlix = "";
+var prime = "";
+var hulu = "";
+
 $(document).ready(function() {
 
+    var streamingSites = function(imDbId) {
+        var apiUrl = `https://imdb-api.com/en/API/ExternalSites/${apiKeys.imdb}/${imDbId}`;
+    
+        fetch(apiUrl).then(function(response) {
+            if (response.ok) {
+              response.json().then(function(data) {
+                console.log(data);
+                fullTitle = data.fullTitle;
+                console.log(fullTitle);
+                if (data.netflix !== null) {
+                    console.log(data.netflix.url);
+                }
+              });
+            } 
+          })
+          .catch(function(error) {
+            // If no response then report network error
+            alert("Unable to connect to Movies API");
+          });
+    }
 
+
+
+
+
+// get movies random list of 10
     function fetchMoviesList(category) {
 
         const apiUrl = `https://imdb-api.com/en/API/${category}/${apiKeys.imdb}`
@@ -16,20 +46,12 @@ $(document).ready(function() {
                 randomList(data);
 
               });
-            } else {
-              // unrecognizable movie name
-              alert("Error: movie not found");
-            }
+            } 
           })
           .catch(function(error) {
             // If no response then report network error
             alert("Unable to connect to Movies API");
           });
-
-
-
-
-
     }
 
     // get Top 10 Tv Shows
@@ -52,6 +74,8 @@ $(document).ready(function() {
         });
     }
 
+    var listArray = [];
+
     function randomList(response) {
 
         const min = 0;
@@ -66,6 +90,9 @@ $(document).ready(function() {
 
         for (let i = 0; i < 10; i++) {
             let random = Math.floor(Math.random() * (max - min)) + min
+                listArray.push(response.items[random].id);
+                console.log(listArray);
+            
             $('.show-tv-lists').append(`
             <div class="column has-text-dark has-background-light show-listings-tv mt-3 mb-3 is-size-5 is-rounded is-inline-block">
             <img src="${response.items[random].image}" width="150px" height="150px">
@@ -75,12 +102,9 @@ $(document).ready(function() {
         `)
         }
 
-
+        
 
     }
-
-
-
 
     // Event Listerners"
     $('.tv-show-btn').on('click', function(event) {
@@ -113,5 +137,7 @@ $(document).ready(function() {
         console.log('search')
     });
 
-
+    streamingSites("tt8740790");
 });
+
+
