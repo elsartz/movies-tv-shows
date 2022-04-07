@@ -15,6 +15,10 @@
     padding-left: 3rem;
 }
 
+.level {
+    padding-right: 3rem;
+}
+
 .search-btn button {
     width: 100%;
 }
@@ -101,4 +105,8 @@
     word-wrap: normal;
     white-space: nowrap;
     direction: ltr;
+}
+
+.show-listings-tv:hover {
+    border: 1px solid blue;
 }

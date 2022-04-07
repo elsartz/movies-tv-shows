@@ -20,6 +20,8 @@
 </head>
 
 <body>
+
+
     <!-- NAV-BAR -->
     <nav class="level">
         <div class="site-logo">
@@ -29,8 +31,8 @@
         </div>
 
         <div class="columns">
-            <div class="column is-half block"></div>
-            <div class="column is-half block"></div>
+            <!-- <div class="column is-half block"></div>
+            <div class="column is-half block"></div> -->
 
             <div class="column is-6">
                 <div class="level-item nav-movie">
@@ -41,7 +43,7 @@
                             <a class="navbar-item is-size-4 movies-btn" data-value="Top250Movies">
                                     Top 10 Movies
                                   </a>
-                            <a class="navbar-item is-size-4 movies-btn" data-value="MostPopularMoviess">
+                            <a class="navbar-item is-size-4 movies-btn" data-value="MostPopularMovies">
                                     Most Popular Movies
                                   </a>
                         </div>
@@ -67,8 +69,8 @@
             </div>
         </div>
         </a>
-        </p>
-        </p>
+        <!-- </p>
+        </p> -->
     </nav>
     <!-- END OF NAV-BAR -->
 
@@ -119,6 +121,8 @@
         </div>
     </section>
 
+    <script defer src="./assets/js/javascript.js"></script>
+    <script defer src="./assets/env/config.js"></script>
     <!-- Hero footer: will stick at the bottom -->
     <div class="hero-foot column is-11 is-offset-1">
         <nav class="tabs ">
@@ -148,6 +152,14 @@
     </div>
 
 
+    <div class="modal" id="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <!-- Any other Bulma elements you want -->
+            <p>Unable to connect to Movies API :P</p>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
 
     <script defer src="./assets/env/config.js "></script>
     <script defer src="./assets/js/javascript.js "></script>
