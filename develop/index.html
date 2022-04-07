@@ -11,7 +11,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
     <!-- stylesheet -->
     <link href="./assets/css/style.css" rel="stylesheet">
 
@@ -30,47 +29,49 @@
             </p>
         </div>
 
-        <div class="columns">
-            <!-- <div class="column is-half block"></div>
-            <div class="column is-half block"></div> -->
+        <!-- <div class="column is-half block"></div> -->
+        <!-- <div class="column is-half block"></div> -->
+        <div class="column is-3"></div>
+        <div class="column">
 
-            <div class="column is-6">
-                <div class="level-item nav-movie">
-                    <div class="navbar-item level-item has-dropdown is-hoverable ">
-                        <a class="link is-info is-size-3">Movies
+            <div class="level-item nav-movie">
+                <div class="column is-half"></div>
+                <div class="navbar-item level-item has-dropdown is-hoverable ">
+                    <a class="link is-info is-size-3">Movies
                                 <span class="material-icons">movie</span></a>
-                        <div class="navbar-dropdown ">
-                            <a class="navbar-item is-size-4 movies-btn" data-value="Top250Movies">
+                    <div class="navbar-dropdown ">
+                        <a class="navbar-item is-size-4 movies-btn" id="1" data-movie="Top250Movies">
                                     Top 10 Movies
                                   </a>
-                            <a class="navbar-item is-size-4 movies-btn" data-value="MostPopularMovies">
+                        <a class="navbar-item is-size-4 movies-btn" id="2" data-movie="MostPopularMovies">
                                     Most Popular Movies
                                   </a>
-                        </div>
                     </div>
                 </div>
-
             </div>
-            <div class="column is-6">
-                <div class="level-item nav-tv">
-                    <div class="navbar-item level-item has-dropdown is-hoverable ">
-                        <a class="link is-info is-size-3">TV Shows
+
+        </div>
+        <div class="column is-4">
+            <div class="level-item nav-tv">
+                <div class="navbar-item level-item has-dropdown is-hoverable ">
+                    <a class="link is-info is-size-3">TV Shows
                     <span class="material-icons">smart_display</span></a>
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item is-size-4 tv-show-btn" id="1" data-value="Top250TVs">
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item is-size-4 tv-show-btn" id="1" data-tv="Top250TVs">
                         Top 10 TVs
                       </a>
-                            <a class="navbar-item is-size-4 tv-show-btn" id="2" data-value="MostPopularTVs">
+                        <a class="navbar-item is-size-4 tv-show-btn" id="2" data-tv="MostPopularTVs">
                         Most Popular TVs
                       </a>
-                        </div>
                     </div>
                 </div>
+                <div class="column is-three-fifths"></div>
             </div>
+
         </div>
+
         </a>
-        <!-- </p>
-        </p> -->
+
     </nav>
     <!-- END OF NAV-BAR -->
 
@@ -78,7 +79,7 @@
         <div class="hero-body">
             <div class="columns is-rest is-desktop">
                 <!-- search section -->
-                <div class="column is-rest search-wrapper is-one-quarter has-background-grey-dark is-medium">
+                <div class="column is-rest search-wrapper is-one-quarter is-medium">
                     <div class="bd-notification search-content pt-4">
 
                         <div class="field">
@@ -90,45 +91,38 @@
                                         <button class="button mt-3 is-success is-medium is-rounded" id="search-btn">Search</button>
                                     </div>
                                 </div>
-
+                                <!-- search Movie or TV -->
+                                <div class="select">
+                                    <select id="search-type">
+              <option class="is-focused">Search by Type:</option>
+              <option value="SearchMovie">Movies</option>
+              <option value="SearchSeries">TV Series</option>
+            </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="column is-1"></div>
 
-                <!-- Show listings -->
+                <!-- Show list -->
                 <div class="column">
-                    <div class="show-listings-header is-size-2">
+                    <div class="show-list-header is-size-2">
                         <div class="p-title has-text-centered"></div>
                     </div>
                 </div>
             </div>
-
-            <!-- stream content -->
-            <div class="columns is-desktop">
-                <div class="column is-one-quarter has-background-warning"></div>
-                <div class="column is-1 "></div>
-                <div class="column has-background-danger">Stream Section</div>
-
-
-
-                <button class="modal-close is-large" aria-label="close"></button>
-            </div>
-
         </div>
         </div>
         </div>
     </section>
 
-    <script defer src="./assets/js/javascript.js"></script>
-    <script defer src="./assets/env/config.js"></script>
     <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot column is-11 is-offset-1">
+    <div class="hero-foot column ">
         <nav class="tabs ">
-            <div class="container has-background-grey-dark">
+            <div class="container ">
                 <ul>
-                    <li class="is-active ">copyright© 2022: Web Dev Corp.&nbsp</li>
+                    <li>copyright© 2022: Abc Web Corp.&nbsp</li>
                     <li>Developers:</li>
                     <li><a>Github profile#1</a></li>
                     <li><a>Github profile#2</a></li>
@@ -137,29 +131,17 @@
             </div>
         </nav>
     </div>
-    </section>
 
-
-    <div id="modal-js" class="modal">
+    <div class="modal" id="modal-js">
         <div class="modal-background"></div>
 
         <div class="modal-content">
             <div class="box-info">
-
-                <!-- Your content -->
+                <!-- content -->
             </div>
         </div>
     </div>
 
-
-    <div class="modal" id="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <!-- Any other Bulma elements you want -->
-            <p>Unable to connect to Movies API :P</p>
-        </div>
-        <button class="modal-close is-large" aria-label="close"></button>
-    </div>
 
     <script defer src="./assets/env/config.js "></script>
     <script defer src="./assets/js/javascript.js "></script>
