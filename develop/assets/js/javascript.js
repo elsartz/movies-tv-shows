@@ -14,6 +14,10 @@ let watchmodeData = {
     trailer_thumbnail: '',
 }
 
+let searchHistory = {
+    title: []
+};
+
 const min = 0
 const max = 250
 
@@ -28,7 +32,6 @@ $(document).ready(function() {
                         if (response.ok) {
                             response.json().then(function(data) {
                                 // console.log(data);
-
 
                                 if (category === "Top250Movies") {
                                     displayTopTen(data)
@@ -90,7 +93,6 @@ $(document).ready(function() {
     </div>
     `)
                 }
-
                 // // show more info when user click on poster
                 $('.poster').on('click', function(event) {
                     event.stopPropagation();
@@ -129,8 +131,6 @@ $(document).ready(function() {
      <p>Trailer:</p><a href="${watchmodeData.trailer}" target="_blank">${watchmodeData.trailer}</a>
       </p>
         `)
-     
-//   
 
         // close the modal
         $('#modal-js').on('click', function(event) {
@@ -286,7 +286,6 @@ $(document).ready(function() {
             `);
 
             });
-
        
               // close the modal
         $('#modal-js').on('click', function(event) {
@@ -297,28 +296,6 @@ $(document).ready(function() {
         });
                 
         } // end of poster event
-
-    /*
-    * event listeners
-    */
-    $('.tv-show-btn').on('click', function(event) {
-        event.stopPropagation();
-
-        if ($('.show-list-header').length) {
-            $('.p-title').empty()
-        }
-
-
-        let category = event.target.dataset.tv
-
-        if (category === "Top250TVs") {
-            menuItem = $('#1').text()
-        } else {
-            menuItem = $('#2').text()
-        }
-        console.log(category)
-        fetchTvList(category)
-    });
 
     /*
     * Where to watch 
@@ -344,13 +321,63 @@ $(document).ready(function() {
                   watchmodeData.year = response.year
                   watchmodeData.trailer = response.trailer
                   watchmodeData.trailer_thumbnail = response.trailer_thumbnail
-             
             }
         });
     
     } // end of watchFetch()
 
+    function onLoad() {
 
+        if (localStorage.getItem('searchTitle')) {
+            searchHistory = JSON.parse(localStorage.getItem('searchTitle'));
+
+            $.each(searchHistory.title, function(index) {
+                console.log(searchHistory.title[index])
+                $('.dropdown-menu').append(`
+                <a class="dropdown-item" href="#"><p>${searchHistory.title[index]}</p></a>
+                `)
+            });
+        }
+    }
+
+    function addHistory(cityName) {
+
+        if (!searchHistory.title.includes(title)) {
+            searchHistory.title.push(title);
+            localStorage.setItem('searchCity', JSON.stringify(searchHistory));
+            $('.dropdown-menu').empty()
+            onLoad()
+        }
+        return
+    }
+
+// event listeners declaration
+    $('.dropdown-menu').on('click', function(event) {
+        event.stopPropagation();
+        cityName = event.target.textContent
+
+        removeItems()
+        fetchCityInfo(cityName)
+    });
+
+        $('.tv-show-btn').on('click', function(event) {
+            event.stopPropagation();
+    
+            if ($('.show-list-header').length) {
+                $('.p-title').empty()
+            }
+    
+            let category = event.target.dataset.tv
+    
+            if (category === "Top250TVs") {
+                menuItem = $('#3').text()
+            } else {
+                menuItem = $('#4').text()
+            }
+            console.log(menuItem)
+            fetchTvList(category)
+        });
+    
     $('.movies-btn').on('click', function(event) {
         event.stopPropagation();
 
@@ -369,8 +396,9 @@ $(document).ready(function() {
         // event.stopPropagation();
     })
 
-
     $('#search-btn').on('click', function() {
+        event.stopPropagation();
+
         let e = document.getElementById("search-type")
         let category = e.value;
         title = $('.input').val()
@@ -386,5 +414,7 @@ $(document).ready(function() {
     }
         search(category, title)
     });
+
+    onLoad()
 
 });
