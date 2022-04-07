@@ -1,38 +1,23 @@
 var modalEl = $("#modal-js");
 
 let menuItem;
-
+let title;
 let start = 0;
 let end = 10;
 
-var fullTitle = "";
-var netFlix = "";
-var prime = "";
-var hulu = "";
+let watchmodeData = {
+    id: '',
+    title: '',
+    plot_overiew: '',
+    release_date: '',
+    trailer: '',
+    trailer_thumbnail: '',
+}
 
 const min = 0
 const max = 250
 
 $(document).ready(function() {
-
-            var streamingSites = function(imDbId) {
-                var apiUrl = `https://imdb-api.com/en/API/ExternalSites/${apiKeys.imdb}/${imDbId}`;
-
-                fetch(apiUrl).then(function(response) {
-                        if (response.ok) {
-                            response.json().then(function(data) {
-
-                                fullTitle = data.fullTitle;
-                                if (data.netflix !== null) {
-                                    return
-                                }
-                            });
-                        }
-                    })
-                    .catch(function(error) {
-
-                    });
-            }
 
             // fetch movies
             function fetchMoviesList(category) {
@@ -43,6 +28,8 @@ $(document).ready(function() {
                         if (response.ok) {
                             response.json().then(function(data) {
                                 // console.log(data);
+
+
                                 if (category === "Top250Movies") {
                                     displayTopTen(data)
                                 } else {
@@ -98,7 +85,7 @@ $(document).ready(function() {
                     let random = Math.floor(Math.random() * (max - min)) + min
                     $('.show-list').append(`
         <div class="column has-text-dark has-background-light show-posters mt-3 mb-3 is-size-5 is-inline-block">
-        <img class="poster" src="${response.items[random].image}" data-value="${random}"width="120px" height="120px">
+        <img class="poster" src="${response.items[random].image}" data-id="${response.items[random].id}" data-value="${random}"width="120px" height="120px">
     <p>${response.items[random].fullTitle}</p>
     </div>
     `)
@@ -109,18 +96,20 @@ $(document).ready(function() {
                     event.stopPropagation();
 
                     let id = event.target.dataset.value
-                    moreInfoModal(response, id)
+                    let watchModeId = event.target.dataset.id
+                    moreInfoModal(response, id, watchModeId)
                 })
 
             }
 
             // modal
-            function moreInfoModal(response, id) {
+            function moreInfoModal(response, id, watchModeId) {
 
-                console.log('hi')
+                watchFetch(watchModeId)
                 let rating = Math.floor(response.items[id].imDbRating);
-                console.log(rating)
-                    // open the modal
+                console.log(watchmodeData.trailer)
+
+                // open the modal
                 $('#modal-js').addClass('is-active')
 
                 $('.box-info').append(`
@@ -129,14 +118,19 @@ $(document).ready(function() {
         <img src="${response.items[id].image}" width="200px" height="200px">
         <p>Title: ${response.items[id].fullTitle}</p>
         <p>Actors/Actresses: ${response.items[id].crew}</p>
-        <p>year: ${response.items[id].year}</p>
+        <p>Year: ${response.items[id].year}</p>
         <div class="rating">
+        <p>Rank:  ${response.items[id].rank}
         <p>Rating:
         ${Array(rating).fill().map((item, i) => `
           <img src="./assets/img/rating.png" width="20px" heigh=20px"></img>`).join('')}
       </div>
-      <p>Rank:  ${response.items[id].rank}
+
+     <p>Trailer:</p><a href="${watchmodeData.trailer}" target="_blank">${watchmodeData.trailer}</a>
+      </p>
         `)
+     
+//   
 
         // close the modal
         $('#modal-js').on('click', function(event) {
@@ -271,15 +265,38 @@ $(document).ready(function() {
             $('.show-list').append(`
     <div class="column has-text-dark has-background-light show-posters mt-3 mb-3 is-size-5 is-inline-block">
      <img class="poster" src="${response.results[i].image}" data-value="${i}"width="120px" height="120px">
-
      <div class="text">
      <p>${response.results[i].title}</p>
      <p>${response.results[i].description}</p>
     </div>
     </div>
-        `)
-        }
-   }
+        `)}
+
+        $('.poster').on('click', function(event) {
+            event.stopPropagation();
+            let id = event.target.dataset.value
+            
+            $('#modal-js').addClass('is-active')
+            $('.box-info').append(`
+            <div class="more-info">
+            <div class="modal-items">
+            <img src="${response.results[id].image}" has-text-centered width="280px" height="280px">
+            <p>Title: ${response.results[id].title}</p>
+            <p>Description: ${response.results[id].description}</p>
+            `);
+
+            });
+
+       
+              // close the modal
+        $('#modal-js').on('click', function(event) {
+            if (!$(event.target).closest('.modal-content, modal').length) {
+                $('body').find('.modal').removeClass('is-active');
+                $('.box-info').html('')
+            }
+        });
+                
+        } // end of poster event
 
     /*
     * event listeners
@@ -302,6 +319,36 @@ $(document).ready(function() {
         console.log(category)
         fetchTvList(category)
     });
+
+    /*
+    * Where to watch 
+    */
+
+    function watchFetch(id){
+
+        const apiUrl = `https://api.watchmode.com/v1/title/${id}/details/?apiKey=${apiKeys.watchmode}&append_to_response=sources'`
+        
+        $.ajax({
+            method: 'GET',
+            url: apiUrl,
+            dataType: 'json',
+            error: function(error) {
+                console.log(error)
+            },
+            success: function(response) {
+                // if successful
+                watchmodeData.id = response.id
+                watchmodeData.title = response.title
+                  watchmodeData.plot_overiew = response.plot_overiew
+                  watchmodeData.release_date = response.release_date
+                  watchmodeData.year = response.year
+                  watchmodeData.trailer = response.trailer
+                  watchmodeData.trailer_thumbnail = response.trailer_thumbnail
+             
+            }
+        });
+    
+    } // end of watchFetch()
 
 
     $('.movies-btn').on('click', function(event) {
@@ -326,7 +373,7 @@ $(document).ready(function() {
     $('#search-btn').on('click', function() {
         let e = document.getElementById("search-type")
         let category = e.value;
-        let title = $('.input').val()
+        title = $('.input').val()
      
     if (category === "SearchMovie") {
         menuItem = 'Movies';
