@@ -5,7 +5,22 @@ var netFlix = "";
 var prime = "";
 var hulu = "";
 
+var modalEl = document.getElementById("modal");
+console.log(modalEl);
+
 $(document).ready(function() {
+
+
+// Functions to open and close a modal
+function openModal($target) {
+    modalEl.classList.add('is-active');
+  }
+
+  function closeModal($el) {
+    modalEl.classList.remove('is-active');
+  }
+
+
 
     var streamingSites = function(imDbId) {
         var apiUrl = `https://imdb-api.com/en/API/ExternalSites/${apiKeys.imdb}/${imDbId}`;
@@ -24,7 +39,8 @@ $(document).ready(function() {
           })
           .catch(function(error) {
             // If no response then report network error
-            alert("Unable to connect to Movies API");
+            // alert("Unable to connect to Movies API");
+            
           });
     }
 
@@ -50,7 +66,12 @@ $(document).ready(function() {
           })
           .catch(function(error) {
             // If no response then report network error
-            alert("Unable to connect to Movies API");
+            // alert("Unable to connect to Movies API");
+            openModal(modalEl);
+            $('#modal').on('click', function(event) {
+                closeModal(modalEl);
+            });
+
           });
     }
 
