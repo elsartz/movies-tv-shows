@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Calistoga&family=Sue+Ellen+Francisco&display=swap');
 :root {
     --prim-color: aliceblue;
 }
@@ -29,6 +30,66 @@
 
 .navbar-dropdown {
     min-width: 30% !important;
+}
+
+.show-tv-lists {
+    border-radius: .5rem .5rem 0 0;
+    background-color: #271519!important;
+}
+
+.show-tv-posters {
+    border-radius: .5rem;
+    border: .3rem solid;
+    border-color: #485fc7;
+    max-width: 200px;
+    box-shadow: rgba(229, 233, 235, 0.871) 0px 1px 2px 0px, rgb(228, 233, 237) 0px 2px 6px 2px;
+}
+
+.tv-poster:hover {
+    cursor: pointer;
+}
+
+.p-title {
+    font-family: 'Calistoga', cursive;
+}
+
+.search-wrapper {
+    border-radius: .5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 2rem;
+}
+
+.more-icon {
+    background-color: #271519!important;
+    border-radius: 0 0 .5rem .5rem;
+}
+
+.more-icon span {
+    position: relative;
+    margin-left: 5rem;
+    cursor: pointer;
+}
+
+.more-icon span {
+    position: relative;
+    margin-left: 5rem;
+    align-content: center;
+    cursor: pointer;
+}
+
+.icon-left:hover {
+    color: rgb(25, 213, 8);
+    transform: translateX(-10px);
+}
+
+.icon-right:hover {
+    color: rgb(25, 213, 8);
+    transform: translateX(10px);
+}
+
+.poster {
+    background-color: aliceblue;
 }
 
 .material-icons {
