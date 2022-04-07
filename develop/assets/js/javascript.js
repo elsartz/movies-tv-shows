@@ -97,11 +97,11 @@ $(document).ready(function() {
                 for (let i = 0; i < 10; i++) {
                     let random = Math.floor(Math.random() * (max - min)) + min
                     $('.show-list').append(`
-            <div class="column has-text-dark has-background-light show-posters mt-3 mb-3 is-size-5 is-inline-block">
-            <img class="poster" src="${response.items[random].image}" data-value="${random}"width="120px" height="120px">
-        <p>${response.items[random].fullTitle}</p>
-        </div>
-        `)
+        <div class="column has-text-dark has-background-light show-posters mt-3 mb-3 is-size-5 is-inline-block">
+        <img class="poster" src="${response.items[random].image}" data-value="${random}"width="120px" height="120px">
+    <p>${response.items[random].fullTitle}</p>
+    </div>
+    `)
                 }
 
                 // // show more info when user click on poster
@@ -109,8 +109,6 @@ $(document).ready(function() {
                     event.stopPropagation();
 
                     let id = event.target.dataset.value
-                        // showMoreInfoTv(response, tvInfo)
-                    console.log(id)
                     moreInfoModal(response, id)
                 })
 
@@ -119,6 +117,7 @@ $(document).ready(function() {
             // modal
             function moreInfoModal(response, id) {
 
+                console.log('hi')
                 let rating = Math.floor(response.items[id].imDbRating);
                 console.log(rating)
                     // open the modal
@@ -209,7 +208,7 @@ $(document).ready(function() {
         });
 
                        // // show more info when user click on poster
-                       $('.poster').on('click', function() {
+                       $('.poster').on('click', function(event) {
                         event.stopPropagation();
     
                         let id = event.target.dataset.value
@@ -218,7 +217,9 @@ $(document).ready(function() {
                     })
     } // end of displayMostPopTv
 
-    // Functions to open and close a modal
+    /*
+    * modal for fetch error
+    */
     function openModal(el) {
         console.log(modalEl)
         modalEl[0].classList.add('is-active');
@@ -230,7 +231,59 @@ $(document).ready(function() {
         modalEl[0].classList.remove('is-active');
     }
 
-    // Event Listerners"
+    /*
+    * Search fetch
+    */
+    function search(category, title) {
+
+        const apiUrl = `https://imdb-api.com/en/API/${category}/${apiKeys.imdb}/${title}`
+
+        $.ajax({
+            method: 'GET',
+            url: apiUrl,
+            dataType: 'json',
+            error: function(error) {
+                console.log(error)
+            },
+            success: function(response) {
+                // if successful
+                // console.log(response)
+                    searchResult(response)
+            }
+        });
+
+    } // end of search()
+
+    /*
+    * Search Result
+    */
+    function searchResult(response) {
+
+        if ($('.show-list-header').length) {
+            $('.p-title').empty()
+        }
+
+        var length = response.results.length
+
+        $('.p-title').append(`${menuItem}`)
+        $('.p-title').append(`<div class="column show-list"></div>`)
+        for (let i = 0; i < length; i++){
+            $('.show-list').append(`
+    <div class="column has-text-dark has-background-light show-posters mt-3 mb-3 is-size-5 is-inline-block">
+     <img class="poster" src="${response.results[i].image}" data-value="${i}"width="120px" height="120px">
+
+     <div class="text">
+     <p>${response.results[i].title}</p>
+     <p>${response.results[i].description}</p>
+    </div>
+    </div>
+        `)
+        }
+   }
+
+    /*
+    * event listeners
+    */
     $('.tv-show-btn').on('click', function(event) {
         event.stopPropagation();
 
@@ -258,9 +311,8 @@ $(document).ready(function() {
             $('.p-title').empty()
         }
 
-
         var category = event.target.dataset.movie;
-        console.log(category)
+       
         if (category === "Top250Movies") {
             menuItem = $('#1').text();
         } else {
@@ -271,9 +323,21 @@ $(document).ready(function() {
     })
 
 
-    $('#search-btn').on('click', function(event) {
-        event.stopPropagation();
-        // console.log('search')
+    $('#search-btn').on('click', function() {
+        let e = document.getElementById("search-type")
+        let category = e.value;
+        let title = $('.input').val()
+     
+    if (category === "SearchMovie") {
+        menuItem = 'Movies';
+    } 
+
+    if (category === "SearchSeries"){
+        menuItem = 'TV Series';
+        console.log(category)
+        console.log(title)
+    }
+        search(category, title)
     });
 
 });
