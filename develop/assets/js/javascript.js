@@ -1,6 +1,6 @@
-var modalEl = document.getElementById("modal");
+var modalEl = $("#modal-js");
 
-let menuItem = '';
+let menuItem;
 
 let start = 0;
 let end = 10;
@@ -44,17 +44,16 @@ $(document).ready(function() {
                             response.json().then(function(data) {
                                 // console.log(data);
                                 if (category === "Top250Movies") {
-                                    displayTopTen(response)
+                                    displayTopTen(data)
                                 } else {
-                                    displayMostPopular(response, start, end)
+                                    displayMostPopular(data, start, end)
                                 }
                             });
                         }
                     })
                     .catch(function(error) {
-                        // If no response then report network error
                         openModal(modalEl);
-                        $('#modal').on('click', function(event) {
+                        $('#modal-js').on('click', function(event) {
                             closeModal(modalEl);
                         });
 
@@ -111,6 +110,7 @@ $(document).ready(function() {
 
                     let id = event.target.dataset.value
                         // showMoreInfoTv(response, tvInfo)
+                    console.log(id)
                     moreInfoModal(response, id)
                 })
 
@@ -118,6 +118,7 @@ $(document).ready(function() {
 
             // modal
             function moreInfoModal(response, id) {
+
                 let rating = Math.floor(response.items[id].imDbRating);
                 console.log(rating)
                     // open the modal
@@ -149,7 +150,7 @@ $(document).ready(function() {
 
     function displayMostPopular(response, start, end) {
 
-        if ($('.show-listing-header').length) {
+        if ($('.show-list-header').length) {
             $('.p-title').empty()
         }
 
@@ -159,15 +160,15 @@ $(document).ready(function() {
         // $.each(response, function(index) {
         for (let i = start; i < end; i++) {
             $('.show-list').append(`
-            <div class="column has-text-dark has-background-light posters mt-3 mb-3 is-size-5 is-inline-block">
-            <img src="${response.items[i].image}" width="120px" height="120px" >
+            <div class="column has-text-dark has-background-light show-posters mt-3 mb-3 is-size-5 is-inline-block">
+            <img class="poster" src="${response.items[i].image}" data-value="${i}" width="120px" height="120px" >
             <p>${response.items[i].fullTitle}</p>
             <p><strong># ${response.items[i].rank}</p>
         </div>
         `)
         };
 
-        $('.p-title').append(`<div class="column has-background-dark more-icon">
+        $('.p-title').append(`<div class="column more-icon">
         <span class="material-icons icon-left">keyboard_double_arrow_left</span>
         <span class="material-icons icon-right">keyboard_double_arrow_right</span>
         </div>`)
@@ -188,7 +189,7 @@ $(document).ready(function() {
                 $('.material-icons').empty();
             }
 
-            displayMostPopTv(response, start, end)
+            displayMostPopular(response, start, end)
         });
 
         $('.icon-right').on('click', function() {
@@ -204,54 +205,62 @@ $(document).ready(function() {
                 $('.show-listing').empty()
                 $('.material-icons').empty();
             }
-            displayMostPopTv(response, start, end)
+            displayMostPopular(response, start, end)
         });
 
-        $('.icon-right').on('click', function() {
-
-            start += 10;
-            end += 10;
-
-            if (end > 100) {
-                $('.show-listings').append(`<1>No more result!`)
-                return;
-            }
-
-            if ($('.show-tv').length) {
-                $('.show-listings-tv').empty()
-                $('.material-icons').empty();
-            }
-            displayMostPopTv(response, start, end)
-        });
+                       // // show more info when user click on poster
+                       $('.poster').on('click', function() {
+                        event.stopPropagation();
+    
+                        let id = event.target.dataset.value
+                            // showMoreInfoTv(response, tvInfo)
+                        moreInfoModal(response, id)
+                    })
     } // end of displayMostPopTv
 
     // Functions to open and close a modal
-    function openModal($target) {
-        modalEl.classList.add('is-active');
+    function openModal(el) {
+        console.log(modalEl)
+        modalEl[0].classList.add('is-active');
+        document.querySelector('.box-info').textContent = 'Unable to connect to Movies API'
+     
     }
 
-    function closeModal($el) {
-        modalEl.classList.remove('is-active');
+    function closeModal(el) {
+        modalEl[0].classList.remove('is-active');
     }
 
     // Event Listerners"
     $('.tv-show-btn').on('click', function(event) {
         event.stopPropagation();
 
-        let category = event.target.dataset.value
+        if ($('.show-list-header').length) {
+            $('.p-title').empty()
+        }
+
+
+        let category = event.target.dataset.tv
 
         if (category === "Top250TVs") {
             menuItem = $('#1').text()
         } else {
             menuItem = $('#2').text()
         }
+        console.log(category)
         fetchTvList(category)
     });
 
 
     $('.movies-btn').on('click', function(event) {
-        var category = event.target.dataset.value;
+        event.stopPropagation();
 
+        if ($('.show-list-header').length) {
+            $('.p-title').empty()
+        }
+
+
+        var category = event.target.dataset.movie;
+        console.log(category)
         if (category === "Top250Movies") {
             menuItem = $('#1').text();
         } else {

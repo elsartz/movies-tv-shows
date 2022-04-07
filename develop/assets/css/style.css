@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Calistoga&family=Sue+Ellen+Francisco&display=swap');
 :root {
     --prim-color: aliceblue;
+    --panel-color: #2e292a;
 }
 
 * {
@@ -39,8 +40,7 @@
 /* show list */
 
 .show-list {
-    padding: 2rem 0 2rem 0;
-    margin: 1rem 0 1rem 0;
+    padding: 2rem .5rem 2rem .5rem;
     border-radius: 2rem 2rem 0 0;
     background-color: #2e292a;
 }
@@ -76,11 +76,7 @@
     border-radius: .5rem;
     padding: 2rem;
     background-color: aliceblue;
-    color: #271519;
-}
-
-.more-info .poster {
-    border: .1rem solid #271519;
+    color: var(--panel-color);
 }
 
 .search-wrapper {
@@ -88,14 +84,15 @@
     margin-bottom: 2rem;
     padding-bottom: 2rem;
     padding-right: 2rem;
+    background-color: var(--panel-color);
 }
 
 
 /* arrow icons */
 
 .more-icon {
-    background-color: #271519!important;
     border-radius: 0 0 .5rem .5rem;
+    background-color: var(--panel-color)!important;
 }
 
 .icon-left:hover {
