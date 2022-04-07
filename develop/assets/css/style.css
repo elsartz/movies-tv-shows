@@ -15,10 +15,6 @@
     padding-left: 3rem;
 }
 
-.level {
-    padding-right: 3rem;
-}
-
 .search-btn button {
     width: 100%;
 }
@@ -32,25 +28,59 @@
     min-width: 30% !important;
 }
 
-.show-tv-lists {
-    border-radius: .5rem .5rem 0 0;
-    background-color: #271519!important;
+.p-title {
+    padding-top: 2rem;
+    max-width: auto;
+    font-family: 'Calistoga', cursive;
+    border-radius: 2rem 2rem 0 0;
 }
 
-.show-tv-posters {
+
+/* show list */
+
+.show-list {
+    padding: 2rem 0 2rem 0;
+    margin: 1rem 0 1rem 0;
+    border-radius: 2rem 2rem 0 0;
+    background-color: #2e292a;
+}
+
+
+/* poster */
+
+.show-posters {
+    margin: .5rem;
     border-radius: .5rem;
     border: .3rem solid;
-    border-color: #485fc7;
+    border-color: #302d2d;
     max-width: 200px;
     box-shadow: rgba(229, 233, 235, 0.871) 0px 1px 2px 0px, rgb(228, 233, 237) 0px 2px 6px 2px;
 }
 
-.tv-poster:hover {
+.poster {
+    background-color: aliceblue;
+}
+
+.poster:hover {
     cursor: pointer;
 }
 
-.p-title {
-    font-family: 'Calistoga', cursive;
+
+/* more info modal */
+
+.more-info {
+    font-size: 20px;
+    display: grid;
+    min-height: 200px;
+    padding: 1.5rem;
+    border-radius: .5rem;
+    padding: 2rem;
+    background-color: aliceblue;
+    color: #271519;
+}
+
+.more-info .poster {
+    border: .1rem solid #271519;
 }
 
 .search-wrapper {
@@ -60,9 +90,22 @@
     padding-right: 2rem;
 }
 
+
+/* arrow icons */
+
 .more-icon {
     background-color: #271519!important;
     border-radius: 0 0 .5rem .5rem;
+}
+
+.icon-left:hover {
+    color: rgb(25, 213, 8);
+    transform: translateX(-10px);
+}
+
+.icon-right:hover {
+    color: rgb(25, 213, 8);
+    transform: translateX(10px);
 }
 
 .more-icon span {
@@ -78,20 +121,6 @@
     cursor: pointer;
 }
 
-.icon-left:hover {
-    color: rgb(25, 213, 8);
-    transform: translateX(-10px);
-}
-
-.icon-right:hover {
-    color: rgb(25, 213, 8);
-    transform: translateX(10px);
-}
-
-.poster {
-    background-color: aliceblue;
-}
-
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -105,8 +134,4 @@
     word-wrap: normal;
     white-space: nowrap;
     direction: ltr;
-}
-
-.show-listings-tv:hover {
-    border: 1px solid blue;
 }
