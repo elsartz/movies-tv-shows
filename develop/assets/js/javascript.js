@@ -126,7 +126,7 @@ $(document).ready(function() {
           <img src="./assets/img/rating.png" width="20px" heigh=20px"></img>`).join('')}
       </div>
 
-     <p>Trailer:</p><a href="${watchmodeData.trailer}" target="_blank">${watchmodeData.trailer}</a>
+     <p>Trailer:  <a href="${watchmodeData.trailer}" target="_blank" <span><img src="./assets/img/playLink.png" width="25px" heigh=18px"/></span></a>
       </p>
         `)
      
