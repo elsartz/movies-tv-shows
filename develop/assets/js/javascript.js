@@ -68,6 +68,13 @@ $(document).ready(function() {
                             displayMostPopular(response, start, end)
                         }
                     }
+                })
+                .catch(function(error) {
+                    openModal(modalEl);
+                    $('#modal-js').on('click', function(event) {
+                        closeModal(modalEl);
+                    });
+
                 });
             }
 
@@ -217,7 +224,7 @@ $(document).ready(function() {
     function openModal(el) {
         console.log(modalEl)
         modalEl[0].classList.add('is-active');
-        document.querySelector('.box-info').textContent = 'Unable to connect to Movies API'
+        document.querySelector('.box-info').textContent = 'Error: Unable to connect to Movies API'
      
     }
 
@@ -244,6 +251,13 @@ $(document).ready(function() {
                 // console.log(response)
                     searchResult(response)
             }
+        })
+        .catch(function(error) {
+            openModal(modalEl);
+            $('#modal-js').on('click', function(event) {
+                closeModal(modalEl);
+            });
+
         });
 
     } // end of search()
