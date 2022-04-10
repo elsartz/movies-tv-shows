@@ -52,5 +52,5 @@ li>
   
   ## ✳️Screenshots
 project-1
-![Movies-TV-Shows](https://user-images.githubusercontent.com/97566064/162626702-34b66235-6d2d-4228-8e88-a43c027aee53.png)
+![Movies-TV-Shows](https://github.com/elsartz/movies-tv-shows/blob/main/assets/img/Web%20capture.jpeg)
 
