@@ -8,7 +8,8 @@
   <li>Title</li>
   <li>Top 10 Movies🎥</li>
   <li> Most Popular Movies 🎥 </li>
-  <li>Top 10 TV Shows 📺</li>
+  <li>Top 10 TV Shows 📺</![Movies-TV-Shows](https://user-images.githubusercontent.com/97566064/162626664-6d0ad783-c113-41d5-b142-0b18de156fa4.png)
+li>
   <li>Most Popular TV Shows 📺</li>
   <li>Top 10 TV Shows 📺</li>
   
@@ -53,3 +54,5 @@
   
   ## ✳️Screenshots
 project-1
+![Movies-TV-Shows](https://user-images.githubusercontent.com/97566064/162626702-34b66235-6d2d-4228-8e88-a43c027aee53.png)
+
