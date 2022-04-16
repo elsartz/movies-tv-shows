@@ -5,13 +5,11 @@
  Movies and TV 2 Watch is an app that shows you what movies/tv shows you can search for and watch.
   It searches for movies and tv shows by:
   <ul>
-  <li>Title</li>
+  <li>Search by Title</li>
   <li>Top 10 Movies🎥</li>
   <li> Most Popular Movies 🎥 </li>
-  <li>Top 10 TV Shows 📺</![Movies-TV-Shows](https://user-images.githubusercontent.com/97566064/162626664-6d0ad783-c113-41d5-b142-0b18de156fa4.png)
-li>
+  <li>Top 10 TV Shows 📺
   <li>Most Popular TV Shows 📺</li>
-  <li>Top 10 TV Shows 📺</li>
   
   
   
@@ -21,7 +19,6 @@ li>
 <li> Rest API Http request protocol</li>
 <li> DOM manipulation to render the data for the user</li>
 <li> Retrieve the data object</li>
-<li> DOM manipulation to render the data for the user</li>
 <li> The app fetches the response from the server and renders the proper information for the user in the html.</li>
 <li> The search history is saved locally everytime a search is made and updates the search history dropmenu list</li>
 <li> The app can be closed and the search history will be displayed next run time</li>
